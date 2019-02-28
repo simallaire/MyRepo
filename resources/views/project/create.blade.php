@@ -2,8 +2,12 @@
 
 
 @section("content")
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
 
 <h3>Create a new project</h3>
+ 
 
 	@if($project->id == 0)
 	{{-- Create --}}
@@ -31,10 +35,11 @@
 	@php
 		$collection = collect($project->tags);
 		$plucked = $collection->pluck('name');
+		$tags = App\Tag::get();
 
 	@endphp
 			<label for="tags">Tags*</label>
-			<input type="text" value="" name="tags" class="form-control" placeholder="Subject,Frameworks,Other languages, etc." value="" data-role="tagsinput" />
+			<input type="text" value="" name="tags" id="tag" class="form-control" placeholder="Subject,Frameworks,Other languages, etc." value="" data-role="tagsinput" />
 			{{ implode(", #",$plucked->all()) }}
 			
 			
@@ -64,19 +69,23 @@
 </form>
 
 <script>
-
-// Prevent submit form with ENTER
-$(document).ready(function() {
-	var languages = [
+var languages = [
 		@foreach($languages as $language)
 		"{{$language->name}}",
 		@endforeach
 
 	];
-	var options={
+var tags = [
+	@foreach($tags as $tag)
+	"{{$tag->name}}",
+	@endforeach
+];
 
-	};
-		
+$("#language").autocomplete({
+	source : languages
+});
+$("#tag").autocomplete({
+	source: tags
 });
 </script>
 

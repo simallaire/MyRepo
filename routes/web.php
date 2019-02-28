@@ -29,7 +29,7 @@ Route::get('/project/main/{name}',function($name){
 	return view('project.main.'.$name);
 });
 
-Route::post('/test',function(Request $request){
+Route::get('/test',function(){
 	// $array = $request->name['id'];
     $msg = "un message";
 	$msg = $request['name'];

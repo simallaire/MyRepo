@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
 
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -38,7 +39,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 
-</head>
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">

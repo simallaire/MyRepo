@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
+use Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -26,7 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post();
+        $tags =  Tag::get();
+        return view('post.create',compact(['post','tags']));        
     }
 
     /**
@@ -37,7 +41,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+            $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+
+            ]);
+
+            if($request->tags != ""){
+                $tags_arr = explode(',',$request->tags);
+            }
+            $post = new Post();
+
+            $post->title = $request->title;
+            $post->body =  $request->body;
+            // $post->user_id = Auth::user()->id;
+            $post->user_id = 51;
+
+            $post->save();
+            if(isset($tags_arr)){
+                foreach($tags_arr as $tag_){
+                    Tag::newTagPost($tag_,$post->id);
+                }
+            }
+
+            return view('home');      
     }
 
     /**
@@ -48,7 +76,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('post.show',compact('post'));
     }
 
     /**
@@ -59,7 +87,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $tags =  Tag::get();
+
+        return view('post.create',compact(['post','tags']));        
     }
 
     /**
