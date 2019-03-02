@@ -30,6 +30,9 @@
                                     <li class="list-group-item"><a href="/project">
                                     See all Projects
                                     </a></li>
+                                    <li class="list-group-item"><a href="/post">
+                                        See all posts
+                                        </a></li>
                                      <li class="list-group-item"><a href="/language">
                                     See all Languages
                                     </a></li>

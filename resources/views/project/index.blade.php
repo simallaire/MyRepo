@@ -16,13 +16,15 @@
 	@foreach($projects as $project)
 		
 			<li class="list-group-item"><a href="/project/{{ $project->id }}" style="font-size: 20px; font-stretch:ultra-condensed;font-weight:bold; ">{{ $project->title }}</a>
-			@if($project->user)
-				<p style="font-style: italic;">by {{ $project->user->name }}</p>
-			@endif
-			<code>
-				@include('modules.tags',compact('project'))
-			</code>
-			</li>
+				<p style="font-style: italic;">
+				@if($project->user)
+					by {{ $project->user->name }}
+				@endif
+				</p>
+				<code>
+					@include('modules.tags',compact('project'))
+				</code>
+				</li>
 @endforeach
 
 	</ul>
