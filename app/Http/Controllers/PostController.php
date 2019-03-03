@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tag;
+use App\File;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -41,7 +43,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
+            $img = $request->file("image");
             $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
@@ -64,6 +66,14 @@ class PostController extends Controller
                     Tag::newTagPost($tag_,$post->id);
                 }
             }
+            $fn = $img->getClientOriginalName();
+            $filename = Carbon::now()->format('dmyHi')."_".Controller::generateRandomString(20).".".str_after($fn,".");
+            $request->image->storeAs('files',$filename);
+            $file = new File();
+            $file->type = "img";
+            $file->url = $filename;
+            $file->post_id = $post->id;
+            $file->save();
 
             return view('home');      
     }

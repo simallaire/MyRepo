@@ -12,9 +12,8 @@
 <div class="row">
 
 	<div class="col-sm-8 blog-main">
-
 		<div class="blog-post">
-			<h2 class="blog-post-title">{{ $post->title }}</h2>
+			<h2 style="text-align: center;" class="blog-post-title">{{ $post->title }}</h2>
 				<p>
 			<code>
 				@php
@@ -23,6 +22,9 @@
 				@include('modules.tags',compact('project'))
 			</code>
 			</p>
+			@if(isset($post->files[0]))
+				<img src="/storage/files/{{$post->files[0]->url}}" style="max-width: 800px; max-height:600px;">
+			@endif
 			<span class="blog-post" >
 	
 

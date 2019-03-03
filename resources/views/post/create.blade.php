@@ -26,10 +26,10 @@ textarea.jqte, div.jqte, span.jqte {
 
 	@if($post->id == 0)
 	{{-- Create --}}
-		<form action="/post" method="post">
+		<form action="/post" method="post" enctype="multipart/form-data">
 	@else
 	{{-- Update --}}
-		<form action="/post/{{ $post->id }}" method="post">
+		<form action="/post/{{ $post->id }}" method="post" enctype="multipart/form-data">
 		@method('PUT')
 	@endif
 	@csrf
@@ -50,7 +50,7 @@ textarea.jqte, div.jqte, span.jqte {
 	
 	<fieldset class="form-group" id="imgFieldset">
 		<label for="picture">Cover picture</label>
-		<input type="file" class="" id="fileinput" name="picture">
+		<input type="file" class="" id="fileinput" name="image">
 
 	</fieldset>
 
@@ -63,16 +63,7 @@ textarea.jqte, div.jqte, span.jqte {
 		@endif
 
 	<fieldset class="form-group">
-
-		@if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
-		@endif
+		@include('modules.errors')
 	</fieldset>
 </form>
 <img id="coverimg" style="display: none; max-width: 900px; max-height: 600px;" />
