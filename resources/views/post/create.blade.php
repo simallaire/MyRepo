@@ -26,10 +26,10 @@ textarea.jqte, div.jqte, span.jqte {
 
 	@if($post->id == 0)
 	{{-- Create --}}
-		<form action="/post" method="post">
+		<form action="/post" method="post" enctype="multipart/form-data">
 	@else
 	{{-- Update --}}
-		<form action="/post/{{ $post->id }}" method="post">
+		<form action="/post/{{ $post->id }}" method="post" enctype="multipart/form-data">
 		@method('PUT')
 	@endif
 	@csrf
@@ -49,10 +49,10 @@ textarea.jqte, div.jqte, span.jqte {
 	</fieldset>
 	
 	<fieldset class="form-group" id="imgFieldset">
-		<label for="picture">Cover picture</label>
-		<input type="file" class="" id="fileinput" name="picture">
-
+		<?php $id= 1; ?>
+		@include('modules.fileinput',compact('id'))
 	</fieldset>
+
 
 		@if($post->id == 0)
 			{{-- Create --}}
@@ -63,16 +63,7 @@ textarea.jqte, div.jqte, span.jqte {
 		@endif
 
 	<fieldset class="form-group">
-
-		@if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
-		@endif
+		@include('modules.errors')
 	</fieldset>
 </form>
 <img id="coverimg" style="display: none; max-width: 900px; max-height: 600px;" />
@@ -80,26 +71,32 @@ textarea.jqte, div.jqte, span.jqte {
 
 <script>
 	$("#editor").jqte();
-$(document).ready(function(){
+	$(document).ready(function(){
 
-	$("#fileinput").change(function(){
-		var file = $(this).prop('files')[0];
-		console.log(file);
-		var tmppath = URL.createObjectURL(event.target.files[0]);
-		$("#coverimg").fadeIn('fast').attr('src',tmppath);
+		$(".fileinput").change(function(){
+			var file = $(this).prop('files')[0];
+			var id = $(this).attr("id");
+			console.log(file);
+			var tmppath = URL.createObjectURL(event.target.files[0]);
+			$("#coverimg").fadeIn('fast').attr('src',tmppath);
+			$("label[for='image']").html(file.name);
+			$("#imgFieldset").append("<div class='input-group' id='"+id+"'><div class='custom-file'><input type='file' class='custom-file-input fileinput' name='image' id='"+id+"' aria-describedby='inputGroupFileAddon01'><label class='custom-file-label' for='image'>Choose file</label></div></div>");
+			// $("#imgList").append("<i class='fa fa-trash'></i>");
+			// $("#imgList").append('<input type="text" name="images[]" class="form-control" style="" readonly value="'+file.name+'">');
+			
+		});
 	});
-});
 
-var tags = [
-	@foreach($tags as $tag)
-	"{{$tag->name}}",
-	@endforeach
-];
+	var tags = [
+		@foreach($tags as $tag)
+		"{{$tag->name}}",
+		@endforeach
+	];
 
 
-$("#tag").autocomplete({
-	source: tags
-});
+	$("#tag").autocomplete({
+		source: tags
+	});
 </script>
 
 @endsection

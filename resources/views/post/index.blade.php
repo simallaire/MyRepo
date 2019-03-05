@@ -6,7 +6,7 @@
 		<div class="card">
 			<div class="card-body">	
 		{{ $post->id }}.
-		{{ $post->title }} <br/>
+		<a href="post/{{$post->id}}">{{ $post->title }}</a> <br/>
 		&nbsp;by {{ $post->user->name }}
 		</div>
 		</div>

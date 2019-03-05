@@ -27,6 +27,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item"><a href="/project/create">Create a new Project</a></li>
                                     <li class="list-group-item"><a href="/post/create">Create a new post</a></li>
+                                    <li class="list-group-item"><a href="/post">See all posts</a></li>
                                     <li class="list-group-item"><a href="/project">
                                     See all Projects
                                     </a></li>
