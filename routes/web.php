@@ -35,3 +35,7 @@ Route::get('/test',function(){
 	$msg = $request['name'];
     return response()->json(['success'=>$msg]);
 });
+
+Route::get('/phpinfo',function(){
+    dd(phpinfo());
+});

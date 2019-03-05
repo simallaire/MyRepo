@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except("show","index");
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +47,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+            // dd($request);
             $img = $request->file("image");
+            $foo = $request['body'];
             $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',

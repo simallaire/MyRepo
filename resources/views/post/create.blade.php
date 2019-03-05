@@ -49,10 +49,10 @@ textarea.jqte, div.jqte, span.jqte {
 	</fieldset>
 	
 	<fieldset class="form-group" id="imgFieldset">
-		<label for="picture">Cover picture</label>
-		<input type="file" class="" id="fileinput" name="image">
-
+		<?php $id= 1; ?>
+		@include('modules.fileinput',compact('id'))
 	</fieldset>
+
 
 		@if($post->id == 0)
 			{{-- Create --}}
@@ -71,26 +71,32 @@ textarea.jqte, div.jqte, span.jqte {
 
 <script>
 	$("#editor").jqte();
-$(document).ready(function(){
+	$(document).ready(function(){
 
-	$("#fileinput").change(function(){
-		var file = $(this).prop('files')[0];
-		console.log(file);
-		var tmppath = URL.createObjectURL(event.target.files[0]);
-		$("#coverimg").fadeIn('fast').attr('src',tmppath);
+		$(".fileinput").change(function(){
+			var file = $(this).prop('files')[0];
+			var id = $(this).attr("id");
+			console.log(file);
+			var tmppath = URL.createObjectURL(event.target.files[0]);
+			$("#coverimg").fadeIn('fast').attr('src',tmppath);
+			$("label[for='image']").html(file.name);
+			$("#imgFieldset").append("<div class='input-group' id='"+id+"'><div class='custom-file'><input type='file' class='custom-file-input fileinput' name='image' id='"+id+"' aria-describedby='inputGroupFileAddon01'><label class='custom-file-label' for='image'>Choose file</label></div></div>");
+			// $("#imgList").append("<i class='fa fa-trash'></i>");
+			// $("#imgList").append('<input type="text" name="images[]" class="form-control" style="" readonly value="'+file.name+'">');
+			
+		});
 	});
-});
 
-var tags = [
-	@foreach($tags as $tag)
-	"{{$tag->name}}",
-	@endforeach
-];
+	var tags = [
+		@foreach($tags as $tag)
+		"{{$tag->name}}",
+		@endforeach
+	];
 
 
-$("#tag").autocomplete({
-	source: tags
-});
+	$("#tag").autocomplete({
+		source: tags
+	});
 </script>
 
 @endsection

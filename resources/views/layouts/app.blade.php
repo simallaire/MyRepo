@@ -38,6 +38,9 @@
     <link href="{{ asset('css/bootstrap-tagsinput-typeahead.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
 
 <body>
     <div>
@@ -59,19 +62,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                       Pages/Projects
-                       <span class="caret"></span>
-                    </a>
 
-                        @foreach($pages as $page)
-                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                      <a class="dropdown-item" href="{{ $page->route }}">{{ $page->displayName }}</a>
-
-                    </div>
-                        @endforeach
-                      </li>
                           <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                             </li>
