@@ -11,19 +11,24 @@
     <title>{{ config('app.name', 'MyRep') }}</title>
 
     <!-- Scripts -->
-
     @include('layouts.import')
 
-<body>
-    <div>
-        @include('layouts.nav')
 
-        <main class="py-10 container">
-            <div class="card-body"> 
-                        @yield('content')
-                </div>
+    <body>
+        <div>
+            @include('layouts.nav')
+            <div id="app" class="container">
+                <example-component></example-component>
         
-        </main>
-    </div>
-</body>
+            </div>
+            <main class="py-10 container">
+                <div class="card-body"> 
+                            @yield('content')
+                    </div>
+            
+            </main>
+        </div>
+
+    </body>
+    
 </html>

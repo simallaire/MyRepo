@@ -8,6 +8,8 @@
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="/js/bootstrap-tagsinput.js"></script>
     <script type="text/javascript" src="/js/bootstrap-tagsinput-angular.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    {{-- <script src="{{ asset('js/main.js')}}" rel="stylesheet"> </script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

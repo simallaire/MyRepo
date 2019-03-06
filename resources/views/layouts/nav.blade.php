@@ -37,6 +37,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="/user/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -49,7 +50,39 @@
                             </div>
                         </li>
                     @endguest
+                    <li class="nav-item form-inline">
+                        <input type="search" name="search" class="form-control" placeholder="Search..." id="searchInput">
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <script>
+    $(document).ready(function(){
+        $("#searchInput").keyup(function(){
+            var search = $(this).val();
+            if(search.length >= 3){
+                $.ajax({
+                    type: 'GET',
+                    url: '/search/'+search,
+                    success : function(data){
+                        $("#app").html("");
+                        console.log(data);
+                        if(data.tags){
+                            for(var i =0 ; i < data.tags.length; i++){
+                                $("#app").append("<p><a href='/tag/"+data.tags[i].id+"'>#"+data.tags[i].name+"</a></p>");
+                
+                                $("#app").append("<example-component></example-component>");
+
+                            }
+                        }
+                    },
+                });
+            }else{
+                $("#app").html("");
+            }
+        });
+    });
+    
+    </script>
+

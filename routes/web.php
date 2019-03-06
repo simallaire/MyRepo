@@ -29,13 +29,8 @@ Route::get('/project/main/{name}',function($name){
 	return view('project.main.'.$name);
 });
 
-Route::get('/test',function(){
-	// $array = $request->name['id'];
-    $msg = "un message";
-	$msg = $request['name'];
-    return response()->json(['success'=>$msg]);
-});
 
 Route::get('/phpinfo',function(){
     dd(phpinfo());
 });
+Route::get('/search/{query}', 'AjaxController@search');
