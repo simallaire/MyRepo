@@ -21,7 +21,7 @@ textarea.jqte, div.jqte, span.jqte {
 
 </style>
 
-<h3>Create a new post</h3>
+<h3 class="title is-4">Create a new post</h3>
  
 
 	@if($post->id == 0)
@@ -35,11 +35,11 @@ textarea.jqte, div.jqte, span.jqte {
 	@csrf
 	<input type="hidden" name="id" value="{{ $post->id }}">
 	<fieldset class="form-group">
-		<label for="title">Title</label>
-		<input type="text" class="form-control" name="title" required id="title" value="{{ $post->title }}" >
+		<label class="subtitle is-5" for="title">Title</label>
+		<input type="text" class="input is-medium" name="title" required id="title" value="{{ $post->title }}" >
 	</fieldset>
 	<fieldset class="form-group">
-		<label for="body">Body</label>
+		<label class="subtitle is-5" for="body">Body</label>
 		<textarea name="body" rows="10" id="editor" class="jqte" required >{{ $post->body }}</textarea>
 	</fieldset>	
 	<fieldset class="form-group">
@@ -50,7 +50,7 @@ textarea.jqte, div.jqte, span.jqte {
 	
 	<fieldset class="form-group" id="imgFieldset">
 		<?php $id= 1; ?>
-		@include('modules.fileinput',compact('id'))
+		@include('modules.fileinput',compact(['post','id']))
 	</fieldset>
 
 
@@ -72,7 +72,8 @@ textarea.jqte, div.jqte, span.jqte {
 <script>
 	$("#editor").jqte();
 	$(document).ready(function(){
-
+		$("#coverimg").fadeIn('fast').attr('src','/storage/files/{{ $post->files[0]->url}}');
+		
 		$(".fileinput").change(function(){
 			var file = $(this).prop('files')[0];
 			var id = $(this).attr("id");
@@ -80,7 +81,7 @@ textarea.jqte, div.jqte, span.jqte {
 			var tmppath = URL.createObjectURL(event.target.files[0]);
 			$("#coverimg").fadeIn('fast').attr('src',tmppath);
 			$("label[for='image']").html(file.name);
-			// $("#imgFieldset").append("<div class='input-group' id='"+id+"'><div class='custom-file'><input type='file' class='custom-file-input fileinput' name='image' id='"+id+"' aria-describedby='inputGroupFileAddon01'><label class='custom-file-label' for='image'>Choose file</label></div></div>");
+			// $("#imgFieldset").append("<div class='input-group' id='"+id+"'><div class='custom-file'><input type='file' class='custom-file-input fileinput' name='image' id='"+id+"' aria-describedby='inputGroupFileAddon01'><label class="subtitle is-5" class='custom-file-label' for='image'>Choose file</label></div></div>");
 		
 			
 		});

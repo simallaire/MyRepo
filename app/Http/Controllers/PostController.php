@@ -63,8 +63,8 @@ class PostController extends Controller
 
             $post->title = $request->title;
             $post->body =  $request->body;
-            // $post->user_id = Auth::user()->id;
-            $post->user_id = 51;
+            $post->user_id = Auth::user()->id;
+            // $post->user_id = 51;
 
             $post->save();
             if(isset($tags_arr)){
@@ -117,7 +117,43 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+                    // dd($request);
+                    $img = $request->file("image");
+                    $foo = $request['body'];
+                    $validatedData = $request->validate([
+                    'title' => 'required|max:255',
+                    'body' => 'required',
+        
+                    ]);
+        
+                    if($request->tags != ""){
+                        $tags_arr = explode(',',$request->tags);
+                    }
+
+        
+                    $post->title = $request->title;
+                    $post->body =  $request->body;
+                    $post->user_id = Auth::user()->id;
+                    // $post->user_id = 51;
+        
+                    $post->save();
+                    if(isset($tags_arr)){
+                        foreach($tags_arr as $tag_){
+                            Tag::newTagPost($tag_,$post->id);
+                        }
+                    }
+                    if($img){
+                        $fn = $img->getClientOriginalName();
+                        $filename = Carbon::now()->format('dmyHi')."_".Controller::generateRandomString(20).".".str_after($fn,".");
+                        $request->image->storeAs('files',$filename);
+                        $file = new File();
+                        $file->type = "img";
+                        $file->url = $filename;
+                        $file->post_id = $post->id;
+                        $file->save();
+                    }
+        
+                    return view('home');  
     }
 
     /**

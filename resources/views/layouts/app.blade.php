@@ -18,8 +18,8 @@
         <div>
             @include('layouts.nav')
             <div id="app" class="container">
-                <example-component></example-component>
-        
+                    {{-- <tags-list nom="taggg" id="1"></tags-list> --}}
+
             </div>
             <main class="py-10 container">
                 <div class="card-body"> 

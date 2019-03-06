@@ -11,9 +11,9 @@
 
 <div class="row">
 
-	<div class="col-sm-8 blog-main">
+	<div class="col-xl-10 blog-main">
 		<div class="blog-post">
-			<h2 style="text-align: center;" class="blog-post-title">{{ $post->title }}</h2>
+			<h2 style="text-align: center;" class="title is-3">{{ $post->title }}</h2>
 				<p>
 			<code>
 				@php
@@ -23,8 +23,18 @@
 			</code>
 			</p>
 			@if(isset($post->files[0]))
-				<img src="/storage/files/{{$post->files[0]->url}}" style="max-width: 800px; max-height:600px;">
+			<div class="modal">
+				<div class="modal-background"></div>
+				<div class="modal-content">
+				  <p class="image is-16by9">
+					<img src="/storage/files/{{$post->files[0]->url}}" alt="">
+				  </p>
+				</div>
+				<button class="modal-close is-large" aria-label="close"></button>
+			  </div>
+				<img src="/storage/files/{{$post->files[0]->url}}" style="max-width: 90%; max-height:600px;">
 			@endif
+			<br/>
 			<span class="blog-post" >
 	
 
@@ -48,6 +58,11 @@
 
 	var bodycontent = $("textarea").val();
 	$("span.blog-post").html(bodycontent);
-
+	$("img").click(function(){
+		$(".modal").addClass("is-active");
+	});
+	$(".modal-close").click(function(){
+		$(".modal").removeClass("is-active");
+	});
 </script>
 @endsection
