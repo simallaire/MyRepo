@@ -72,8 +72,9 @@ textarea.jqte, div.jqte, span.jqte {
 <script>
 	$("#editor").jqte();
 	$(document).ready(function(){
+		@if(isset($post->files[0]))
 		$("#coverimg").fadeIn('fast').attr('src','/storage/files/{{ $post->files[0]->url}}');
-		
+		@endif
 		$(".fileinput").change(function(){
 			var file = $(this).prop('files')[0];
 			var id = $(this).attr("id");
