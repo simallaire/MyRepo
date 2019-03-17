@@ -25,17 +25,13 @@
                         You are logged in!
 
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="/project/create">Create a new Project</a></li>
+
                                     <li class="list-group-item"><a href="/post/create">Write a post</a></li>
-                                    <li class="list-group-item"><a href="/project">
-                                    Projects
-                                    </a></li>
+
                                     <li class="list-group-item"><a href="/post">
-                                        Posts
+                                        View Posts
                                         </a></li>
-                                     <li class="list-group-item"><a href="/language">
-                                    Languages
-                                    </a></li>
+
                                      <li class="list-group-item"><a href="/tag">
                                     Tags
                                     </a></li>
