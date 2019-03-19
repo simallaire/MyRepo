@@ -55,11 +55,12 @@
                 </div>
             @endforeach
             </div>
+            <br>
 		</div>
 
 	</div>
 </div>
-<div class="comment" id="{{$post->id}}">
+<div class="comment container" id="{{$post->id}}">
     <input type="text" name="comment" placeholder="Laisser un commentaire.." class="form-control" id="{{$post->id}}">
     <button type="submit" id="{{$post->id}}" class="form-control submitComment">Envoyer</button>
 </div>
