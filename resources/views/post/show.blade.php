@@ -47,10 +47,15 @@
 					{{ $post->user->name }}</a></p>
 
 			</div>
+            <div class="container">
+            @foreach($post->files as $file)
+                <div class="content">
+                    <i class="fa fa-download"></i><a href="/storage/files/{{$file->url}}">{{$file->originalName}}</a>
+                </div>
+            @endforeach
+            </div>
 		</div>
-		@foreach($post->files as $file)
-			<i class="fa fa-download"></i><a href="/storage/files/{{$file->url}}">{{$file->originalName}}</a>
-		@endforeach
+
 	</div>
 </div>
 <div class="comment" id="{{$post->id}}">
