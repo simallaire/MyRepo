@@ -22,7 +22,7 @@
 				@include('modules.tags',compact('project'))
 			</code>
 			</p>
-			@if(isset($post->files[0]))
+			{{-- @if(isset($post->files))
 			<div class="modal">
 				<div class="modal-background"></div>
 				<div class="modal-content">
@@ -33,22 +33,36 @@
 				<button class="modal-close is-large" aria-label="close"></button>
 			  </div>
 				<img src="/storage/files/{{$post->files[0]->url}}" style="max-width: 90%; max-height:600px;">
-			@endif
+			@endif --}}
 			<br/>
 			<span class="blog-post" >
-	
+
 
 			</span>
 			<hr>
-			
+
 			<p class="blog-post-meta">
-				{{ $post->created_at->diffForHumans() }} 
+				{{ $post->created_at->diffForHumans() }}
 				by <a href="user/{{ $post->user->id }}">
 					{{ $post->user->name }}</a></p>
 
 			</div>
 		</div>
 	</div>
+</div>
+<div class="comment" id="{{$post->id}}">
+    <input type="text" name="comment" placeholder="Laisser un commentaire.." class="form-control" id="{{$post->id}}">
+    <button type="submit" id="{{$post->id}}" class="form-control submitComment">Envoyer</button>
+</div>
+<br>
+<div class="comments">
+@foreach($post->comments as $comment)
+    <div class="card">
+        <h5>{{ $comment->body }}</h5>
+        <p>by {{$comment->user->name}} ({{$comment->created_at->diffForHumans()}})</p>
+    </div>
+@endforeach
+
 </div>
 <div style="display: none;">
 	<textarea>{{ $post->body }}</textarea>
@@ -64,5 +78,23 @@
 	$(".modal-close").click(function(){
 		$(".modal").removeClass("is-active");
 	});
+
+    $(".submitComment").click(function(){
+        var post_id = $(this).attr("id");
+        var text = $("input[name='comment']").val()
+        $.ajax({
+            type: 'GET',
+            url: '/storePostComment',
+            data : {
+                postid : post_id,
+                body: text
+            },
+            success: function(data){
+                $("input[name='comment']").val("");
+                $("div.comments").append("<div class='card'><h5>"+data.body+"</h5><p>by "+data.username+" (Now)</p></div>")
+            }
+
+        });
+    });
 </script>
 @endsection

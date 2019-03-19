@@ -36,7 +36,7 @@ class PostController extends Controller
     {
         $post = new Post();
         $tags =  Tag::get();
-        return view('post.create',compact(['post','tags']));        
+        return view('post.create',compact(['post','tags']));
     }
 
     /**
@@ -72,16 +72,17 @@ class PostController extends Controller
                     Tag::newTagPost($tag_,$post->id);
                 }
             }
-            $fn = $img->getClientOriginalName();
-            $filename = Carbon::now()->format('dmyHi')."_".Controller::generateRandomString(20).".".str_after($fn,".");
-            $request->image->storeAs('files',$filename);
-            $file = new File();
-            $file->type = "img";
-            $file->url = $filename;
-            $file->post_id = $post->id;
-            $file->save();
-
-            return view('home');      
+            if(isset($img)){
+                $fn = $img->getClientOriginalName();
+                $filename = Carbon::now()->format('dmyHi')."_".Controller::generateRandomString(20).".".str_after($fn,".");
+                $request->image->storeAs('files',$filename);
+                $file = new File();
+                $file->type = "img";
+                $file->url = $filename;
+                $file->post_id = $post->id;
+                $file->save();
+            }
+            return view('home');
     }
 
     /**
@@ -105,7 +106,7 @@ class PostController extends Controller
     {
         $tags =  Tag::get();
 
-        return view('post.create',compact(['post','tags']));        
+        return view('post.create',compact(['post','tags']));
     }
 
     /**
@@ -123,19 +124,19 @@ class PostController extends Controller
                     $validatedData = $request->validate([
                     'title' => 'required|max:255',
                     'body' => 'required',
-        
+
                     ]);
-        
+
                     if($request->tags != ""){
                         $tags_arr = explode(',',$request->tags);
                     }
 
-        
+
                     $post->title = $request->title;
                     $post->body =  $request->body;
                     $post->user_id = Auth::user()->id;
                     // $post->user_id = 51;
-        
+
                     $post->save();
                     if(isset($tags_arr)){
                         foreach($tags_arr as $tag_){
@@ -152,8 +153,8 @@ class PostController extends Controller
                         $file->post_id = $post->id;
                         $file->save();
                     }
-        
-                    return view('home');  
+
+                    return view('home');
     }
 
     /**

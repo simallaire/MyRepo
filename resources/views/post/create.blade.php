@@ -22,7 +22,7 @@ textarea.jqte, div.jqte, span.jqte {
 </style>
 
 <h3 class="title is-4">Create a new post</h3>
- 
+
 
 	@if($post->id == 0)
 	{{-- Create --}}
@@ -41,13 +41,13 @@ textarea.jqte, div.jqte, span.jqte {
 	<fieldset class="form-group">
 		<label class="subtitle is-5" for="body">Body</label>
 		<textarea name="body" rows="10" id="editor" class="jqte" required >{{ $post->body }}</textarea>
-	</fieldset>	
+	</fieldset>
 	<fieldset class="form-group">
 
 		@include('modules.tagsinput')
-	
+
 	</fieldset>
-	
+
 	<fieldset class="form-group" id="imgFieldset">
 		<?php $id= 1; ?>
 		@include('modules.fileinput',compact(['post','id']))
@@ -66,6 +66,7 @@ textarea.jqte, div.jqte, span.jqte {
 		@include('modules.errors')
 	</fieldset>
 </form>
+
 <img id="coverimg" style="display: none; max-width: 900px; max-height: 600px;" />
 
 
@@ -83,8 +84,8 @@ textarea.jqte, div.jqte, span.jqte {
 			$("#coverimg").fadeIn('fast').attr('src',tmppath);
 			$("label[for='image']").html(file.name);
 			// $("#imgFieldset").append("<div class='input-group' id='"+id+"'><div class='custom-file'><input type='file' class='custom-file-input fileinput' name='image' id='"+id+"' aria-describedby='inputGroupFileAddon01'><label class="subtitle is-5" class='custom-file-label' for='image'>Choose file</label></div></div>");
-		
-			
+
+
 		});
 	});
 

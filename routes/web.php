@@ -34,3 +34,5 @@ Route::get('/phpinfo',function(){
     dd(phpinfo());
 });
 Route::get('/search/{query}', 'AjaxController@search');
+Route::get('/storePostComment','AjaxController@storePostComment');
+
