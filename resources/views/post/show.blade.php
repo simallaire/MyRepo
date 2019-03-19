@@ -47,6 +47,7 @@
 					{{ $post->user->name }}</a></p>
 
 			</div>
+			<br>
             <div class="container">
             @foreach($post->files as $file)
                 <div class="content">
@@ -66,9 +67,9 @@
 
 <div class="comments">
 @foreach($post->comments as $comment)
-    <div class="card">
-        <h5>{{ $comment->body }}</h5>
-        <p>by {{$comment->user->name}} ({{$comment->created_at->diffForHumans()}})</p>
+    <div class="panel panel-default">
+        <div class="panel-heading"> {{$comment->user->name}} ({{$comment->created_at->diffForHumans()}})</div>
+        <div class="panel-body">{{ $comment->body }}</div>
     </div>
 @endforeach
 
@@ -100,7 +101,7 @@
             },
             success: function(data){
                 $("input[name='comment']").val("");
-                $("div.comments").append("<div class='card'><h5>"+data.body+"</h5><p>by "+data.username+" (Now)</p></div>")
+                $("div.comments").append("<div class='panel panel-default'><div class='panel-heading'> "+data.username+" (Now)</div><div class='panel-body'>"+data.body+"</div></div>")
             }
 
         });
