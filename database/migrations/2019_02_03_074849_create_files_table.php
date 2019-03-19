@@ -18,6 +18,7 @@ class CreateFilesTable extends Migration
             $table->integer('project_id')->nullable();
             $table->integer('post_id')->nullable();
             $table->string('type')->nullable();
+            $table->string('originalName')->nullable();
             $table->string('url');
             $table->timestamps();
         });

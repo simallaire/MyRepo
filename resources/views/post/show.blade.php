@@ -48,6 +48,9 @@
 
 			</div>
 		</div>
+		@foreach($post->files as $file)
+			<i class="fa fa-download"></i><a href="/storage/files/{{$file->url}}">{{$file->originalName}}</a>
+		@endforeach
 	</div>
 </div>
 <div class="comment" id="{{$post->id}}">
@@ -55,6 +58,7 @@
     <button type="submit" id="{{$post->id}}" class="form-control submitComment">Envoyer</button>
 </div>
 <br>
+
 <div class="comments">
 @foreach($post->comments as $comment)
     <div class="card">

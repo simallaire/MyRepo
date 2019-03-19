@@ -77,6 +77,7 @@ class PostController extends Controller
                 $filename = Carbon::now()->format('dmyHi')."_".Controller::generateRandomString(20).".".str_after($fn,".");
                 $request->image->storeAs('files',$filename);
                 $file = new File();
+                $file->originalName = $fn;
                 $file->type = "img";
                 $file->url = $filename;
                 $file->post_id = $post->id;
