@@ -14,7 +14,8 @@
         @endif
         @if(isset($post->user))
 		    &nbsp;by <a href="/user/{{$post->user->id}}">{{ $post->user->name }}</a>
-        @endif
+		@endif
+		, {{$post->updated_at->diffForHumans()}}
 		</div>
 		</div>
 
