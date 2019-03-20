@@ -8,11 +8,27 @@
 
 
 <div class="container">
+@if(Auth::user()->ownsPost($post))
+                <div class="dropdown" style="float:right">
+                    <a id="postDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="postDropdown">
+                        <a class="dropdown-item btn" href="/post/{{$post->id}}/edit">
+                           Edit
+                        </a>
 
+                        <a class="dropdown-item btn" onclick="deletePost()" href="#">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+@endif
 <div class="row">
 
 	<div class="col-xl-10 blog-main">
 		<div class="blog-post">
+
 			<h2 style="text-align: center;" class="title is-3">{{ $post->title }}</h2>
 				<p>
 			<code>
@@ -79,6 +95,27 @@
 	<textarea>{{ $post->body }}</textarea>
 </div>
 <script>
+
+    function deletePost(){
+        var r = false;
+        r = confirm('Are you sure?');
+
+        if(r == true){
+            $.ajax({
+                type: 'GET',
+                url: "/post/{{$post->id}}/delete",
+                success: function(data){
+                    alert(data.msg);
+                    window.location.href = "/home";
+                }
+
+            });
+
+        }else{
+
+        }
+    }
+
 	$("textarea").jqte();
 
 	var bodycontent = $("textarea").val();

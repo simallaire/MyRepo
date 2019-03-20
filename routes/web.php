@@ -36,3 +36,4 @@ Route::get('/phpinfo',function(){
 Route::get('/search/{query}', 'AjaxController@search');
 Route::get('/storePostComment','AjaxController@storePostComment');
 
+Route::get('/post/{id}/delete','AjaxController@deletePost');

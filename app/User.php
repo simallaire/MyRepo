@@ -23,6 +23,16 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+    public function ownsPost(Post $post){
+        if($this->id == $post->user_id)
+            return true;
+        return false;
+    }
+    public function ownsComment(Comment $comment){
+        if($this->id == $comment->user_id)
+            return true;
+        return false;
+    }
     /**
      * The attributes that are mass assignable.
      *

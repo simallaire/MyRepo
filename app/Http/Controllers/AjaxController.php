@@ -37,4 +37,10 @@ class AjaxController extends Controller
 
         return response()->json($data,200);
     }
+    public function deletePost($id){
+        $post = Post::find($id);
+        $post->delete();
+        $data['msg'] = "Post was succesfully deleted.";
+        return response()->json($data,200);
+    }
 }
