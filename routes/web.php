@@ -38,3 +38,4 @@ Route::get('/search/{query}', 'AjaxController@search');
 Route::get('/storePostComment','AjaxController@storePostComment');
 
 Route::get('/post/{id}/delete','AjaxController@deletePost');
+Route::get('/comment/{id}/delete','AjaxController@deleteComment');

@@ -90,8 +90,12 @@
 
     <div class="comments">
     @foreach($post->comments as $comment)
-        <div class="panel panel-default">
-            <div class="panel-heading"> {{$comment->user->name}} ({{$comment->created_at->diffForHumans()}})</div>
+        <div class="panel panel-default" id="{{$comment->id}}">
+            <div class="panel-heading"> {{$comment->user->name}} ({{$comment->created_at->diffForHumans()}})
+                @if(Auth::user()->ownsComment($comment))
+                    <button class="btn" onclick="deleteComment({{$comment->id}})" style="float:right;">x</button>
+                @endif
+            </div>
             <div class="panel-body">{{ $comment->body }}</div>
         </div>
     @endforeach
@@ -102,7 +106,16 @@
     </div>
 
     <script>
-
+        function deleteComment(id){
+            $.ajax({
+                type: 'GET',
+                url: '/comment/'+id+'/delete',
+                success: function(data){
+                    $(".panel-default#"+id).hide();
+                }
+            });
+            {{-- alert(id); --}}
+        }
         function deletePost(){
             var r = false;
             r = confirm('Are you sure?');
