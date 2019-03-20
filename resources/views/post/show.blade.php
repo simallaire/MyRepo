@@ -59,7 +59,7 @@
 
                 <p class="blog-post-meta">
                      Created {{ $post->created_at->diffForHumans() }}
-                    by <a href="user/{{ $post->user->id }}">
+                    by <a href="/user/{{ $post->user->id }}">
                         {{ $post->user->name }}</a></p>
 
                     <p>
