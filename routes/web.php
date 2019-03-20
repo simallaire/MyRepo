@@ -24,6 +24,7 @@ Route::resource('/project','ProjectController');
 Route::resource('/post','PostController');
 Route::resource('/tag','TagController');
 Route::resource('/language','LanguageController');
+Route::resource('/user','UserController');
 
 Route::get('/project/main/{name}',function($name){
 	return view('project.main.'.$name);
