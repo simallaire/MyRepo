@@ -16,8 +16,11 @@
             <div class="panel-heading">Posts:</div>
             <ul class="list-group panel-body">
             @foreach($user->posts as $post)
-
-                <post title="{{$post->title}}" body="{{$post->body}}" updated_at="{{$post->updated_at->diffForHumans()}}" postid="/post/{{$post->id}}"></post>
+                <post title="{{$post->title}}"
+                    body="{{$post->body}}"
+                    updated_at="{{$post->updated_at->diffForHumans()}}"
+                    postid="/post/{{$post->id}}">
+                </post>
             @endforeach
             </ul>
         </div>
