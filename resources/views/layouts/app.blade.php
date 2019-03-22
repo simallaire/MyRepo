@@ -20,15 +20,16 @@
             <div id="app" class="container">
                     {{-- <tags-list nom="taggg" id="1"></tags-list> --}}
 
-            </div>
             <main class="py-10 container">
-                <div class="card-body"> 
+                <div class="card-body">
                             @yield('content')
                     </div>
-            
+
             </main>
+            </div>
+
         </div>
 
     </body>
-    
+
 </html>

@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(20);
+        $posts = Post::orderBy('updated_at','desc')->paginate(20);
         // dd($posts);
         return view('post.index',compact('posts'));
     }
@@ -108,9 +108,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $tags =  Tag::get();
-
-        return view('post.create',compact(['post','tags']));
+        if(Auth::user()->ownsPost($post)){
+            $tags =  Tag::get();
+            return view('post.create',compact(['post','tags']));
+        }
+        return view('home');
     }
 
     /**
