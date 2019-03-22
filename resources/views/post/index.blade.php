@@ -12,6 +12,7 @@
             updated_at="{{$post->updated_at->diffForHumans()}}"
              postid="/post/{{$post->id}}" userid="/user/{{$post->user->id}}">
         </post>
+        
 	@endforeach
 		</div>
 		<div class="content">

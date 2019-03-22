@@ -16,9 +16,8 @@
             <div class="panel-heading">Posts:</div>
             <ul class="list-group panel-body">
             @foreach($user->posts as $post)
-                <a href="/post/{{$post->id}}">
-                    <li class="list-group-item">{{$post->title}}</li>
-                </a>
+
+                <post title="{{$post->title}}" body="{{$post->body}}" updated_at="{{$post->updated_at->diffForHumans()}}" postid="/post/{{$post->id}}"></post>
             @endforeach
             </ul>
         </div>

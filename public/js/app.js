@@ -1780,6 +1780,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['title', 'body', 'count_comments', 'username', 'updated_at', 'postid', 'userid'],
   mounted: function mounted() {
@@ -36870,9 +36871,17 @@ var render = function() {
             ])
           ])
         : _vm._e(),
-      _vm._v("\n\n\t\t     by "),
-      _c("a", { attrs: { href: _vm.userid } }, [_vm._v(_vm._s(_vm.username))]),
-      _vm._v("\n\n\t\t, " + _vm._s(_vm.updated_at) + "\n\t\t")
+      _vm._v(" "),
+      _vm.username
+        ? _c("div", [
+            _vm._v("\n\t\t     by "),
+            _c("a", { attrs: { href: _vm.userid } }, [
+              _vm._v(_vm._s(_vm.username))
+            ]),
+            _vm._v("\n\n\t\t,")
+          ])
+        : _vm._e(),
+      _vm._v(" " + _vm._s(_vm.updated_at) + "\n\t\t")
     ])
   ])
 }

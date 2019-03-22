@@ -7,9 +7,10 @@
 
         <p v-if="count_comments>0"><i>{{count_comments}} comments  <i class="far fa-comment"></i></i></p>
 
-		    &nbsp;by <a :href="userid">{{ username }}</a>
+        <div v-if="username">
+		by <a :href="userid">{{ username }}</a>
 
-		, {{updated_at}}
+		,</div> {{updated_at}}
 		</div>
 		</div>
 

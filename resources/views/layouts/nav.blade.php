@@ -66,23 +66,33 @@
                     type: 'GET',
                     url: '/search/'+search,
                     success : function(data){
-                        $("#app").html("");
+                        $("#searchResult").html("");
                         console.log(data);
                         if(data.tags){
+                            if(data.tags.length>0){
+                                $("#searchResult").append("<h4>Tags: </h4>")
+                            }
                             for(var i =0 ; i < data.tags.length; i++){
-                                $("#app").append("<p><a href='/tag/"+data.tags[i].id+"'>#"+data.tags[i].name+"</a></p>");
-                
-                                $("#app").append("<example-component></example-component>");
+                                $("#searchResult").append("<p><a href='/tag/"+data.tags[i].id+"'>#"+data.tags[i].name+"</a></p>");
+
+                                $("#searchResult").append("<example-component></example-component>");
+
+                            }
+                            if(data.posts.length>0){
+                                $("#searchResult").append("<h4>Posts: </h4>")
+                            }
+                            for(var i = 0 ; i< data.posts.length; i++){
+                                $("#searchResult").append("<a class='btn form-control is-link' href='/post/"+data.posts[i].id+"'>"+data.posts[i].title+"</a><br/>")
 
                             }
                         }
                     },
                 });
             }else{
-                $("#app").html("");
+                $("#searchResult").html("");
             }
         });
     });
-    
+
     </script>
 
