@@ -9,11 +9,11 @@
         </div>
 
     @endif
-                         <div class="alert alert-info alert-dismissible">You are logged in!
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
+    <div class="alert alert-info alert-dismissible">You are logged in!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -27,22 +27,22 @@
                             </div>
                         @endif
 
+                        <ul class="list-group">
 
-                                <ul class="list-group">
+                            <li class="list-group-item"><a href="/post/create">
+                                <i class="far fa-edit"></i>
+                                Write a post</a>&nbsp;</li>
 
-                                    <li class="list-group-item"><a href="/post/create">
-                                        <i class="far fa-edit"></i>
-                                        Write a post</a>&nbsp;</li>
+                            <li class="list-group-item"><a href="/post">
+                                <i class="fa fa-newspaper">&nbsp;</i>
+                                View Posts
+                                </a></li>
 
-                                    <li class="list-group-item"><a href="/post">
-                                        <i class="fa fa-newspaper">&nbsp;</i>
-                                        View Posts
-                                        </a></li>
-
-                                    <li class="list-group-item"><a href="/file">
-                                     <i class="fas fa-file">&nbsp;</i>Shared Files
-                                    </a></li>
-                                </ul>
+                            <li class="list-group-item"><a href="/file">
+                                <i class="fas fa-file">&nbsp;</i>Shared Files
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
