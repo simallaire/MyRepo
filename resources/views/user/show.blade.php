@@ -15,6 +15,7 @@
         <div class="col-sm-10 panel">
             <div class="panel-heading">Posts:</div>
             <ul class="list-group panel-body">
+            <div id="app">
             @foreach($user->posts as $post)
                 <post title="{{$post->title}}"
                     body="{{$post->body}}"
@@ -22,6 +23,7 @@
                     postid="/post/{{$post->id}}">
                 </post>
             @endforeach
+            </div>
             </ul>
         </div>
         </div>
