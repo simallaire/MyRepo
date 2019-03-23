@@ -30,14 +30,18 @@
 
                                 <ul class="list-group">
 
-                                    <li class="list-group-item"><a href="/post/create">Write a post</a></li>
+                                    <li class="list-group-item"><a href="/post/create">
+                                        <i class="far fa-edit"></i>
+                                        Write a post</a></li>
 
                                     <li class="list-group-item"><a href="/post">
+                                        <i class="fa fa-newspaper-o"></i>
+
                                         View Posts
                                         </a></li>
 
-                                     <li class="list-group-item"><a href="/tag">
-                                    Tags
+                                    <li class="list-group-item"><a href="/file">
+                                     <i class="fas fa-file"></i>Shared Files
                                     </a></li>
                                 </ul>
                     </div>
