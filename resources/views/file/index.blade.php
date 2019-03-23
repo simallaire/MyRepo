@@ -6,7 +6,11 @@
     <h4>Shared Files</h4>
     <div class="list-group">
         @foreach($files as $file)
-        <a href="/storage/files/{{$file->url}}" class="list-group-item list-group-item-action">{{$file->originalName}}</a>
+        <div class="list-group-item list-group-item-action">
+        <a href="/storage/files/{{$file->url}}" class="btn btn-default"><i class="far fa-file">&nbsp;&nbsp;</i>{{$file->originalName}}</a>
+
+        <p><i>by {{$file->post->user->name}}</i> from <a href="/post/{{$file->post->id}}">{{strip_tags($file->post->title)}}</a></p>
+        </div>
         @endforeach
     </div>
 

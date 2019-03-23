@@ -32,16 +32,15 @@
 
                                     <li class="list-group-item"><a href="/post/create">
                                         <i class="far fa-edit"></i>
-                                        Write a post</a></li>
+                                        Write a post</a>&nbsp;</li>
 
                                     <li class="list-group-item"><a href="/post">
-                                        <i class="fa fa-newspaper-o"></i>
-
+                                        <i class="fa fa-newspaper">&nbsp;</i>
                                         View Posts
                                         </a></li>
 
                                     <li class="list-group-item"><a href="/file">
-                                     <i class="fas fa-file"></i>Shared Files
+                                     <i class="fas fa-file">&nbsp;</i>Shared Files
                                     </a></li>
                                 </ul>
                     </div>
