@@ -18,8 +18,6 @@
         <div>
             @include('layouts.nav')
             <div id="searchResult" class="container"></div>
-            <div id="app" class="container">
-                    {{-- <tags-list nom="taggg" id="1"></tags-list> --}}
 
             <main class="py-10 container">
                 <div class="card-body">
@@ -29,7 +27,8 @@
             </main>
             </div>
 
-        </div>
+
+
 
     </body>
 

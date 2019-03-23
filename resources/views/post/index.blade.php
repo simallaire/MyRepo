@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="contrainer">
-	<div class="content">
+	<div id="app" class="content">
 	@foreach($posts as $post)
 
         <post title="{{$post->title}}"
@@ -12,7 +12,7 @@
             updated_at="{{$post->updated_at->diffForHumans()}}"
              postid="/post/{{$post->id}}" userid="/user/{{$post->user->id}}">
         </post>
-        
+
 	@endforeach
 		</div>
 		<div class="content">

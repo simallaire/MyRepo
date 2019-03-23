@@ -58,6 +58,7 @@
         </div>
     </nav>
     <script>
+
     $(document).ready(function(){
         $("#searchInput").keyup(function(){
             var search = $(this).val();
