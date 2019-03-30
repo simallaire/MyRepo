@@ -3,17 +3,12 @@
 @section('content')
     @if(isset($info))
         <div class="alert alert-success" role="alert">
-                {{ $info }}
+                {!! $info !!}
                     <button type="button" class="close" data-dismiss="alert">x</button>
 
         </div>
 
     @endif
-    <div class="alert alert-info alert-dismissible">You are logged in!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

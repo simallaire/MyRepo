@@ -86,7 +86,8 @@ class PostController extends Controller
                     $request->image->storeAs('files',$filename);
                 }catch(Exception $e){}
             }
-            return view('home');
+            $info = "The post was successfully created. <a href='/post/".$post->id."'>See the post.</a>";
+            return view('home',compact('info'));
     }
 
     /**
@@ -159,8 +160,8 @@ class PostController extends Controller
                         $file->post_id = $post->id;
                         $file->save();
                     }
-
-                    return view('home');
+                    $info = "The post was successfully updated.";
+                    return view('home',compact('info'));
     }
 
 

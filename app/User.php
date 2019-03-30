@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -26,10 +27,14 @@ class User extends Authenticatable
     public function ownsPost(Post $post){
         if($this->id == $post->user_id)
             return true;
+        if(Auth::user()->name="admin")
+            return true;
         return false;
     }
     public function ownsComment(Comment $comment){
         if($this->id == $comment->user_id)
+            return true;
+        if(Auth::user()->name="admin")
             return true;
         return false;
     }

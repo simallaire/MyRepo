@@ -40,3 +40,12 @@ Route::get('/storePostComment','AjaxController@storePostComment');
 
 Route::get('/post/{id}/delete','AjaxController@deletePost');
 Route::get('/comment/{id}/delete','AjaxController@deleteComment');
+
+
+Route::get('/test',function(){
+    $user = App\User::find(1);
+
+// return $user->toJson();
+
+return $user->toJson(JSON_PRETTY_PRINT);
+});

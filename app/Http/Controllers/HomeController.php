@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $info = "You are logged in!";
+        return view('home',compact('info'));
     }
     public function about(){
         return view('about');
