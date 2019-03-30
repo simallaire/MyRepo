@@ -8,7 +8,7 @@
 
 
     <div class="container">
-    <!-- @if(Auth::user()->ownsPost($post))
+     @if(Auth::user()->ownsPost($post))
         <div class="dropdown" style="float:right">
             <a id="postDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 <span class="caret"></span>
@@ -23,7 +23,7 @@
                 </a>
             </div>
         </div>
-    @endif -->
+    @endif
     <div class="row">
 
         <div class="col-xl-10 blog-main">

@@ -25,7 +25,7 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
     public function ownsPost(Post $post){
-        if($this->id == $post->user->id)
+        if($this->id == $post->user_id)
             return true;
         if(Auth::user()->email=="admin")
             return true;
