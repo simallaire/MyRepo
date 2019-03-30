@@ -25,18 +25,21 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
     public function ownsPost(Post $post){
-        if($this->id == $post->user_id)
+        if($this->id == $post->user->id)
             return true;
-        if(Auth::user()->name="admin")
+        if(Auth::user()->email=="admin")
             return true;
         return false;
     }
     public function ownsComment(Comment $comment){
         if($this->id == $comment->user_id)
             return true;
-        if(Auth::user()->name="admin")
+        if(Auth::user()->email=="admin")
             return true;
         return false;
+    }
+    public function isAdmin(){
+        return $this->email=="admin";
     }
     /**
      * The attributes that are mass assignable.

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Tag;
 use App\Language;
+use App\File;
 use App\Comment;
 use Auth;
 
@@ -49,5 +50,11 @@ class AjaxController extends Controller
         $data['msg'] = "Comment was succesfully deleted.";
         return response()->json($data,200);
 
+    }
+    public function deleteFile($id){
+        $File = File::find($id);
+        $File->delete();
+        $data['msg'] = "File was succesfully deleted.";
+        return response()->json($data,200);
     }
 }

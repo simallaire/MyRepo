@@ -126,7 +126,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
                     // dd($request);
-                    $img = $request->file("image");
+                    $img = $request->file('image');
                     $foo = $request['body'];
                     $validatedData = $request->validate([
                     'title' => 'required|max:255',
