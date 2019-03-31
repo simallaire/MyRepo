@@ -44,8 +44,7 @@ Route::get('/comment/{id}/delete','AjaxController@deleteComment');
 
 Route::get('/test',function(){
     $user = App\User::find(1);
-
-// return $user->toJson();
-
 return $user->toJson(JSON_PRETTY_PRINT);
 });
+
+Route::get('/send/mail','HomeController@mail');

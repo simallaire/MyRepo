@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
+use App\Mail\PostCreated;
 
 class HomeController extends Controller
 {
+
+
+    public function mail()
+    {
+        Mail::to('sp.allaire93@gmail.com')->send(new PostCreated());
+        
+        return 'Email was sent';
+    }
     /**
      * Create a new controller instance.
      *
@@ -29,4 +40,5 @@ class HomeController extends Controller
     public function about(){
         return view('about');
     }
+
 }
