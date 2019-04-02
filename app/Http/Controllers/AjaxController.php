@@ -35,6 +35,8 @@ class AjaxController extends Controller
 
         $data['body'] = $request['body'];
         $data['username'] = Auth::user()->name;
+        $data['userid']= Auth::user()->id;
+        $data['id'] = $comment->id;
 
         return response()->json($data,200);
     }

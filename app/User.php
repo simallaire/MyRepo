@@ -10,7 +10,7 @@ use Auth;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    public static $admin = "admin";
 
     public function posts(){
         return $this->hasMany(Post::class);

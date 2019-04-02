@@ -51,7 +51,7 @@
                     <img src="/storage/files/{{$post->files[0]->url}}" style="max-width: 90%; max-height:600px;">
                 @endif --}}
                 <br/>
-                <span class="blog-post" >
+                <span class="blog-post" style="font-size:14pt;" >
 
 
                 </span>
@@ -88,16 +88,20 @@
 
     <br>
 
-    <div class="comments">
+    <div class="comments panel panel-default">
+        <div class="panel-heading">
+            Comments
+        </div>
     @foreach($post->comments as $comment)
-        <div class="panel panel-default" id="{{$comment->id}}">
-            <div class="panel-heading"> {{$comment->user->name}} ({{$comment->created_at->diffForHumans()}})
+        <div class="panel-body" id="{{$comment->id}}">
+           <p style="font-style: italic;"> <a href="/user/{{$comment->user->id}}">{{$comment->user->name}}</a> ({{$comment->created_at->diffForHumans()}})</p>
                 @if(Auth::user()->ownsComment($comment))
                     <button class="btn" onclick="deleteComment({{$comment->id}})" style="float:right;">x</button>
                 @endif
+                <p style="padding-left:20px;">{{ $comment->body }}</p>
+
             </div>
-            <div class="panel-body">{{ $comment->body }}</div>
-        </div>
+            <hr>
     @endforeach
 
     </div>
@@ -111,7 +115,7 @@
                 type: 'GET',
                 url: '/comment/'+id+'/delete',
                 success: function(data){
-                    $(".panel-default#"+id).hide();
+                    $(".panel-body#"+id).hide();
                 }
             });
             {{-- alert(id); --}}
@@ -155,7 +159,10 @@
                 },
                 success: function(data){
                     $("input[name='comment']").val("");
-                    $("div.comments").append("<div class='panel panel-default'><div class='panel-heading'> "+data.username+" (Now)</div><div class='panel-body'>"+data.body+"</div></div>")
+                    $("div.comments").append("<div class='panel-body' id="+data.id
+                    +"><p style='font-style: italic;'> <a href='/user/"+data.userid+"'> "+data.username
+                    +"</a> (Now)</p><button class='btn' onclick='deleteComment("+data.id+")' style='float:right;'>x</button><p style='padding-left:20px;'>"+data.body
+                    +"</p><hr></div>");
                 }
 
             });
@@ -163,3 +170,6 @@
     </script>
 
 @endsection
+
+
+
