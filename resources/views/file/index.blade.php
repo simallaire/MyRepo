@@ -12,7 +12,10 @@
                     <button type="button" class="close" id="{{$file->id}}" data-dismiss="alert">x</button>
                 @endif
             @if(isset($file->post))
-                <p><i>by {{$file->post->user->name}}</i> 
+                <p style="margin-left:12px; ">
+                @if(isset($file->post->user))
+                    <i>by {{$file->post->user->name}}</i>
+                @endif
                 from <a href="/post/{{$file->post->id}}">{{strip_tags($file->post->title)}}</a></p>
 
             @endif

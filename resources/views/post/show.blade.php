@@ -58,10 +58,11 @@
                 <hr>
 
                 <p class="blog-post-meta">
+                    @if(isset($post->user))
                      Created {{ $post->created_at->diffForHumans() }}
                     by <a href="/user/{{ $post->user->id }}">
                         {{ $post->user->name }}</a></p>
-
+                    @endif
                     <p>
                     @if(strtotime($post->updated_at)>strtotime($post->created_at))
                         Updated {{$post->updated_at->diffForHumans()}}
@@ -87,14 +88,20 @@
     </div>
 
     <br>
-
+    @if(count($post->comments)>0)
     <div class="comments panel panel-default">
         <div class="panel-heading">
             Comments
         </div>
+    @endif
     @foreach($post->comments as $comment)
         <div class="panel-body" id="{{$comment->id}}">
-           <p style="font-style: italic;"> <a href="/user/{{$comment->user->id}}">{{$comment->user->name}}</a> ({{$comment->created_at->diffForHumans()}})</p>
+            @if(isset($comment->user))
+                <p style="font-style: italic;"> <a href="/user/{{$comment->user->id}}">{{$comment->user->name}}</a>
+            @else
+            <i>Unknown</i>
+            @endif
+            ({{$comment->created_at->diffForHumans()}})</p>
                 @if(Auth::user()->ownsComment($comment))
                     <button class="btn" onclick="deleteComment({{$comment->id}})" style="float:right;">x</button>
                 @endif
