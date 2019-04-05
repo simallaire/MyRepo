@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hey!
 
-{{$user->name}} wrote a new post.
+{{$user->name}} commented on your post.
 
 @component('mail::button', ['url' => 'allier.cf/post/'.$post->id])
 View post
@@ -10,3 +10,4 @@ View post
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
+W

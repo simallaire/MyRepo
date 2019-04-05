@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
+use App\Mail\PostCommented;
 use App\Post;
 use App\Tag;
 use App\Language;
 use App\File;
 use App\Comment;
+use App\User;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -37,6 +42,13 @@ class AjaxController extends Controller
         $data['username'] = Auth::user()->name;
         $data['userid']= Auth::user()->id;
         $data['id'] = $comment->id;
+
+
+        //Send Email to post owner
+        $post = Post::find($request['postid']);
+        $sendTo = User::find($post->user_id);
+        Mail::to($sendTo->email)->send(new PostCommented($comment,$post,Auth::user()));
+
 
         return response()->json($data,200);
     }

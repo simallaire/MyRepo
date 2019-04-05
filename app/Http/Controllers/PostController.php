@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Tag;
 use App\File;
+use App\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
+use App\Mail\PostCreated;
 
 class PostController extends Controller
 {
@@ -87,6 +92,14 @@ class PostController extends Controller
                 }catch(Exception $e){}
             }
             $info = "The post was successfully created. <a href='/post/".$post->id."'>See the post.</a>";
+
+
+            foreach(User::get() as $user){
+                try{
+                    Mail::to($user->email)->send(new PostCreated($post,Auth::user()));
+                }catch(Exception $ex){}
+            }
+
             return view('home',compact('info'));
     }
 
@@ -160,6 +173,8 @@ class PostController extends Controller
                         $file->post_id = $post->id;
                         $file->save();
                     }
+
+
                     $info = "The post was successfully updated.";
                     return view('home',compact('info'));
     }
