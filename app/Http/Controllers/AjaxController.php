@@ -45,9 +45,9 @@ class AjaxController extends Controller
 
 
         //Send Email to post owner
-        $post = Post::find($request['postid']);
-        $sendTo = User::find($post->user_id);
-        Mail::to($sendTo->email)->send(new PostCommented($comment,$post,Auth::user()));
+        // $post = Post::find($request['postid']);
+        // $sendTo = User::find($post->user_id);
+        // Mail::to($sendTo->email)->send(new PostCommented($comment,$post,Auth::user()));
 
 
         return response()->json($data,200);

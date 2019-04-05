@@ -10,4 +10,3 @@ View post
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
-W

@@ -94,11 +94,11 @@ class PostController extends Controller
             $info = "The post was successfully created. <a href='/post/".$post->id."'>See the post.</a>";
 
 
-            foreach(User::get() as $user){
-                try{
-                    Mail::to($user->email)->send(new PostCreated($post,Auth::user()));
-                }catch(Exception $ex){}
-            }
+            // foreach(User::get() as $user){
+            //     try{
+            //         Mail::to($user->email)->send(new PostCreated($post,Auth::user()));
+            //     }catch(Exception $ex){}
+            // }
 
             return view('home',compact('info'));
     }
