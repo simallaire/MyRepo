@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'email-smtp.us-east-1.amazonaws.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@alliers.cf'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@mg.allier.cf'),
         'name' => env('MAIL_FROM_NAME', 'Forum Alliers'),
     ],
 

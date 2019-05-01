@@ -27,10 +27,6 @@ Route::resource('/language','LanguageController');
 Route::resource('/user','UserController');
 Route::resource('/file','FileController');
 
-Route::get('/project/main/{name}',function($name){
-	return view('project.main.'.$name);
-});
-
 
 Route::get('/phpinfo',function(){
     dd(phpinfo());
@@ -48,3 +44,5 @@ return $user->toJson(JSON_PRETTY_PRINT);
 });
 
 Route::get('/send/mail','HomeController@mail');
+
+Auth::routes(['verify' => true]);

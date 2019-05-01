@@ -6,16 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
 use App\Mail\PostCreated;
-
+use App\Post;
+use App\User;
+use Auth;
 class HomeController extends Controller
 {
 
 
     public function mail()
     {
-        Mail::to('sp.allaire93@gmail.com')->send(new PostCreated());
-        
-        return 'Email was sent';
+        $post = Post::find(9);
+        $user = Auth::user();
+
+        dd(Mail::to('sp.allaire93@gmail.com')->send(new PostCreated($post,$user)));
     }
     /**
      * Create a new controller instance.
